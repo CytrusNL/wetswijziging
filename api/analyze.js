@@ -5,16 +5,16 @@ export default async function handler(req, res) {
   if (!prompt) return res.status(400).json({ error: "No prompt" });
 
   try {
-    const r = await fetch("https://api.anthropic.com/v1/messages", {
+    const r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-api-key": process.env.ANTHROPIC_API_KEY,
-        "anthropic-version": "2023-06-01",
+        "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
+        model: "llama-3.3-70b-versatile",
         max_tokens: 1400,
+        temperature: 0.3,
         messages: [{ role: "user", content: prompt }],
       }),
     });
@@ -25,9 +25,7 @@ export default async function handler(req, res) {
       return res.status(r.status).json({ error: data });
     }
 
-    const txt = (data.content || [])
-      .map((b) => b.text || "")
-      .join("")
+    const txt = (data.choices?.[0]?.message?.content || "")
       .replace(/```json|```/g, "")
       .trim();
 
