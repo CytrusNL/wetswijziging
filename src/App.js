@@ -152,14 +152,14 @@ Geef ALLEEN dit JSON terug (geen markdown, geen backticks):
   }
 }`;
 
-  const r = await fetch("https://api.anthropic.com/v1/messages",{
-    method:"POST", headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({ model:"claude-sonnet-4-20250514", max_tokens:1400,
-      messages:[{role:"user",content:prompt}] })
+  const r = await fetch("/api/analyze", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({ prompt })
   });
   const d = await r.json();
-  const txt=(d.content||[]).map(b=>b.text||"").join("").replace(/```json|```/g,"").trim();
-  return JSON.parse(txt);
+  if(!r.ok) throw new Error(d.error||"API error");
+  return JSON.parse(d.result);
 }
 
 // ── Calendar ────────────────────────────────────────────────────
