@@ -669,14 +669,15 @@ export default function App() {
       <div style={{borderBottom:`1px solid ${T.border}`,padding:"0 28px",
         display:"flex",alignItems:"center",justifyContent:"space-between",height:50,
         position:"sticky",top:0,zIndex:100,background:T.bg}}>
-        <div style={{display:"flex",alignItems:"center",gap:10}}>
-          <div style={{width:24,height:24,background:T.yellow,borderRadius:4,
-            display:"flex",alignItems:"center",justifyContent:"center",
-            fontSize:12,fontWeight:900,color:"#000"}}>W</div>
+        <div style={{display:"flex",alignItems:"center",gap:14}}>
+          <img src="/cytrus-logo.jpg" alt="Cytrus"
+            style={{height:28,width:"auto",borderRadius:3,
+              filter:dark?"brightness(10)":"invert(1)"}}/>
+          <span style={{color:T.border,margin:"0 2px"}}>|</span>
           <span style={{fontSize:14,fontWeight:700,color:T.text}}>
             Wetswijzigings<span style={{color:T.yellow}}>Monitor</span>
           </span>
-          <span style={{color:T.border,margin:"0 6px"}}>|</span>
+          <span style={{color:T.border,margin:"0 2px"}}>|</span>
           <span style={{fontSize:10,color:T.textMuted,letterSpacing:1.2,textTransform:"uppercase"}}>
             Publieke Sector
           </span>
@@ -848,12 +849,19 @@ export default function App() {
           </div>
         )}
 
-        <div style={{marginTop:36,paddingTop:14,borderTop:`1px solid ${T.border}`,
-          fontSize:10,color:T.textMuted,textAlign:"center",letterSpacing:1}}>
-          Staatsblad · Staatscourant · Kamerstukken · wetten.overheid.nl · Cytrus AI
+        <div style={{marginTop:36,paddingTop:20,borderTop:`1px solid ${T.border}`,
+          display:"flex",flexDirection:"column",alignItems:"center",gap:10}}>
+          <img src="/cytrus-logo.jpg" alt="Cytrus"
+            style={{height:22,width:"auto",opacity:0.5,
+              filter:dark?"brightness(10)":"invert(1)"}}/>
+          <div style={{fontSize:10,color:T.textMuted,textAlign:"center",letterSpacing:1}}>
+            Staatsblad · Staatscourant · Kamerstukken · wetten.overheid.nl
+          </div>
+          <div style={{fontSize:10,color:T.textMuted,letterSpacing:0.5}}>
+            © 2026 Cytrus Consultancy v.o.f. — All rights reserved
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
